@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ReSkilled">
     <title>ReSkilled - Empowering Teachers</title>
     <style>
         * {
@@ -525,6 +531,15 @@
         .result.pass{background:#e8f5e9;color:#2e7d32}.result.fail{background:#fdecea;color:#c0392b}
         .result .btn{margin:.4rem .2rem 0;width:auto}
         @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1}}
+        /* Mobile app polish */
+        body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none;padding-bottom:env(safe-area-inset-bottom)}
+        nav{padding-top:calc(1rem + env(safe-area-inset-top))}
+        .modal input,.modal select,.modal textarea{font-size:16px}
+        @media (max-width:600px){
+            .section{padding:3rem 5%}.hero{padding:3.5rem 5%}.hero h1{font-size:1.8rem}
+            .courses-grid{grid-template-columns:1fr}.btn,.btn-course,.btn-quiz{min-height:44px}
+            .modal{padding:1.4rem}.nav-links a{padding:.5rem .6rem;white-space:nowrap}
+        }
         .course-card{cursor:pointer}
         .watch{color:#3498db;font-weight:600;font-size:.95rem;margin:-.6rem 0 1rem}
         .vid-box{position:relative;padding-top:56.25%;background:#000;border-radius:8px;overflow:hidden}
@@ -833,6 +848,7 @@
             <a href="#" onclick="goToPage(2);return false">SDG 4</a>
             <a href="#" onclick="openContact('Feedback');return false">Feedback</a>
             <a href="#" onclick="openModal('privacyModal');return false">Privacy</a>
+            <a href="#" id="installBtn" style="display:none">📲 Install App</a>
         </div>
         <p style="margin-top: 1rem; opacity: 0.8;">&copy; 2024 ReSkilled. Empowering educators for a better tomorrow.</p>
     </footer>
@@ -1050,15 +1066,24 @@
             yt = new YT.Player('ytDiv', { videoId: id, width: '100%', height: '100%', playerVars: { rel: 0, modestbranding: 1 },
                 events: { onReady: initDur, onStateChange: e => { if (e.data === 1) { initDur(); startTick(); } else stopTick(); } } });
         }
+        // Tracks real video time (not wall-clock), so 1.5x / 2x speed fills the bar faster and seeking doesn't count
+        let lastT = 0, lastW = 0;
+        function accumulate() {
+            const r = PROG[curVid]; if (!yt || !r || !r.duration) return;
+            try {
+                const now = Date.now(), c = yt.getCurrentTime(), d = c - lastT, el = (now - lastW) / 1000, rate = yt.getPlaybackRate() || 1;
+                lastT = c; lastW = now;
+                if (d > 0 && d <= rate * el * 1.5 + 0.5) r.watched = Math.min(r.duration, (r.watched || 0) + d);   // bigger jumps = seeking, ignored
+                updateBar();
+                if (sess && r.watched - sess.sent >= 15) flush();
+            } catch (e) {}
+        }
         function startTick() {
             stopTick();
-            tick = setInterval(() => {
-                const r = PROG[curVid]; if (!r || !r.duration) return;
-                r.watched = Math.min(r.duration, (r.watched || 0) + 1);
-                updateBar(); if (sess && r.watched - sess.sent >= 15) flush();
-            }, 1000);
+            try { lastT = yt.getCurrentTime(); } catch (e) { lastT = 0; }
+            lastW = Date.now(); tick = setInterval(accumulate, 500);
         }
-        function stopTick() { clearInterval(tick); tick = null; flush(); }
+        function stopTick() { if (tick) accumulate(); clearInterval(tick); tick = null; flush(); }
         function stopVideo() { stopTick(); try { yt && yt.destroy(); } catch (e) {} yt = null; sess = null; }
         async function flush() {
             const t = curVid, r = PROG[t], s = sess;
@@ -1188,6 +1213,13 @@
             const a = document.createElement('a');
             a.download = certName + '.png'; a.href = $('certCanvas').toDataURL('image/png'); a.click();
         }
+
+        /* ---------- Install as an app (PWA) ---------- */
+        let installEv = null;
+        window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEv = e; $('installBtn').style.display = ''; });
+        $('installBtn').addEventListener('click', async e => { e.preventDefault(); if (!installEv) return; installEv.prompt(); await installEv.userChoice; installEv = null; $('installBtn').style.display = 'none'; });
+        window.addEventListener('appinstalled', () => toast('ReSkilled installed! 🎉'));
+        if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
 
         setupCards();
         (async () => { if (tok()) await loadSession(); renderAuth(); refreshCourses(); })();
