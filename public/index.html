@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReSkilled - Empowering Teachers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: #ffffff;
+            padding: 1.5rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #3498db;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: #3498db;
+            border: 2px solid #3498db;
+        }
+
+        .btn-register {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-login:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-register:hover {
+            background: #2980b9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Navigation Buttons */
+        .btn-next, .btn-prev {
+            background: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .btn-next:hover, .btn-prev:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-prev {
+            background: #95a5a6;
+        }
+
+        .btn-prev:hover {
+            background: #7f8c8d;
+        }
+
+        /* Page transitions */
+        .page {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-alt {
+            background: white;
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .section p, .section ul {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section ul li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .section ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .problem-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .problem-card h3 {
+            color: #e74c3c;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Solution Section */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .solution-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* SDG Section */
+        .sdg-section {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .sdg-section h2 {
+            color: white;
+        }
+
+        /* Impact Section */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .impact-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .impact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            font-style: italic;
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .course-header h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin: 0;
+            flex: 1;
+        }
+
+        .level-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .level-badge.beginner {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .level-badge.intermediate {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .course-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .course-details {
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .btn-course {
+            width: 100%;
+            background: #3498db;
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-course:hover {
+            background: #2980b9;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 5%;
+        }
+
+        .cta h2 {
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                padding: 1rem 3%;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Modals, toast, forms */
+        .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:200;padding:1rem}
+        .modal-bg.open{display:flex}
+        .modal{background:#fff;border-radius:12px;padding:2rem;width:100%;max-width:440px;max-height:90vh;overflow:auto;position:relative}
+        .modal h3{margin-bottom:1rem;font-size:1.4rem}
+        .modal .close{position:absolute;top:.6rem;right:1rem;background:none;border:none;font-size:1.6rem;cursor:pointer;color:#888}
+        .modal label{display:block;font-size:.9rem;font-weight:600;margin:.8rem 0 .25rem}
+        .modal input,.modal select,.modal textarea{width:100%;padding:.65rem;border:1px solid #ccd;border-radius:6px;font:inherit}
+        .modal .btn-register{width:100%;margin-top:1.2rem}
+        .modal .switch{text-align:center;margin-top:1rem;font-size:.9rem}
+        .modal .switch a{color:#3498db;cursor:pointer}
+        .err{color:#e74c3c;font-size:.9rem;margin-top:.6rem;min-height:1.2rem}
+        .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#2c3e50;color:#fff;padding:.8rem 1.5rem;border-radius:8px;z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+        .toast.show{opacity:1}
+        .user-area{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+        .stats{display:flex;gap:1rem;margin:1rem 0}
+        .stat{flex:1;background:#f0f6ff;border-radius:8px;padding:.8rem;text-align:center}
+        .stat b{display:block;font-size:1.5rem;color:#3498db}
+        .dash-item{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.6rem 0;border-bottom:1px solid #eee;font-size:.95rem}
+        .btn-course.done{background:#2e7d32}
+        .btn-course.going{background:#ef6c00}
+        /* Nav links */
+        .logo{cursor:pointer;transition:transform .3s}.logo:hover{transform:scale(1.06)}
+        .nav-links{display:flex;gap:.3rem}
+        .nav-links a{position:relative;padding:.5rem .9rem;color:#2c3e50;font-weight:600;cursor:pointer;border-radius:6px;transition:color .25s,background .25s}
+        .nav-links a::after{content:"";position:absolute;left:.9rem;right:.9rem;bottom:.2rem;height:2px;background:#3498db;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+        .nav-links a:hover{color:#3498db;background:#f0f6ff}
+        .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+        .nav-links a.active{color:#3498db}
+        @media (max-width:900px){nav{flex-wrap:wrap;gap:.5rem}.nav-links{order:3;width:100%;overflow-x:auto;justify-content:center}}
+        /* Motion */
+        @keyframes rise{from{opacity:0;transform:translateY(28px)}}
+        @keyframes shift{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+        @keyframes pop{from{opacity:0;transform:scale(.92) translateY(10px)}}
+        .reveal{opacity:0}
+        .reveal.in{opacity:1;animation:rise .6s ease backwards;animation-delay:var(--d,0ms)}
+        .hero{background-size:200% 200%;animation:shift 14s ease infinite}
+        .hero h1{animation:rise .8s ease backwards}.hero p{animation:rise .8s .15s ease backwards}.hero-buttons{animation:rise .8s .3s ease backwards}
+        .modal-bg.open .modal{animation:pop .3s ease}
+        .btn,.btn-course,.btn-quiz{transition:transform .2s,box-shadow .2s,background .3s,color .3s}
+        .btn:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.15)}.btn:active{transform:none}
+        .problem-card{transition:transform .3s,box-shadow .3s}.problem-card:hover{transform:translateX(6px);box-shadow:0 6px 16px rgba(231,76,60,.15)}
+        .solution-icon,.impact-icon{display:inline-block;transition:transform .35s}
+        .solution-card:hover .solution-icon,.impact-item:hover .impact-icon{transform:scale(1.2) rotate(-6deg)}
+        .testimonial-card{transition:transform .3s,box-shadow .3s}.testimonial-card:hover{transform:translateY(-5px);box-shadow:0 10px 24px rgba(0,0,0,.14)}
+        .btn-course:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(52,152,219,.35)}
+        /* Progress + assessment */
+        .pbar{height:8px;background:#e6ecf5;border-radius:6px;overflow:hidden}
+        .pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3498db,#667eea);border-radius:6px;transition:width .6s ease}
+        .prog{margin-bottom:1rem}.prog small{display:block;margin-top:.35rem;color:#666;font-size:.85rem}
+        .rule{font-size:.85rem;color:#777;margin:.6rem 0}
+        .btn-quiz{width:100%;margin-top:.6rem;background:transparent;color:#667eea;border:2px solid #667eea;padding:.7rem;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer}
+        .btn-quiz:hover{background:#667eea;color:#fff;transform:translateY(-2px)}
+        .course-card.locked .watch{color:#999}
+        .qn{padding:.8rem 0 .8rem .7rem;border-bottom:1px solid #eee;border-left:4px solid transparent}
+        .opt{display:flex!important;gap:.5rem;align-items:flex-start;font-weight:400!important;margin:.3rem 0!important;padding:.4rem .6rem;border-radius:6px;cursor:pointer;transition:background .2s}
+        .opt:hover{background:#f0f6ff}.opt input{width:auto!important;margin-top:.25rem}
+        .qn.right{border-left-color:#2e7d32}.qn.wrong{border-left-color:#e74c3c}.opt.key{background:#e8f5e9}
+        .result{padding:1rem;border-radius:8px;text-align:center;margin-bottom:1rem}
+        .result.pass{background:#e8f5e9;color:#2e7d32}.result.fail{background:#fdecea;color:#c0392b}
+        .result .btn{margin:.4rem .2rem 0;width:auto}
+        @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1}}
+        .course-card{cursor:pointer}
+        .watch{color:#3498db;font-weight:600;font-size:.95rem;margin:-.6rem 0 1rem}
+        .vid-box{position:relative;padding-top:56.25%;background:#000;border-radius:8px;overflow:hidden}
+        .vid-box iframe,.vid-box video{position:absolute;inset:0;width:100%;height:100%;border:0}
+        .vid-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:1rem;gap:.5rem}
+        #vidActions{margin-top:1rem;text-align:center}
+        #vidActions .btn-register{width:auto;margin-top:0}
+        @media (max-width:768px){.user-area span{display:none}}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="goToPage(1)">ReSkilled</div>
+        <div class="nav-links" id="navLinks">
+            <a data-p="1">Home</a><a data-p="2">Solution</a><a data-p="3">Courses</a><a data-p="4" class="guest-only">Impact</a><a data-p="5" class="guest-only">Join</a>
+        </div>
+        <div class="auth-buttons" id="authArea">
+            <button class="btn btn-login" onclick="openModal('loginModal')">Login</button>
+            <button class="btn btn-register" onclick="openModal('registerModal')">Register</button>
+        </div>
+    </nav>
+
+    <!-- Page 1: Hero & Problem -->
+    <div class="page" id="page1">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Empowering Teachers. Elevating Education.</h1>
+            <p>A digital platform enabling continuous, flexible, and practical professional development for educators — anytime, anywhere.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="goToPage(3)">🎓 Explore Courses</button>
+                <button class="btn btn-secondary" onclick="goToPage(2)">💡 Learn How It Works</button>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="section">
+            <h2>The Challenge We're Solving</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Infrequent Training</h3>
+                    <p>Teacher training in India is often infrequent and outdated, with 62.5% of educators receiving training only once a year.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Time Constraints</h3>
+                    <p>Many educators struggle with busy schedules, making it difficult to attend traditional professional development programs.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Limited Recognition</h3>
+                    <p>Lack of proper recognition and certification discourages continuous learning and skill development among teachers.</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; font-weight: 600;">This leads to stagnation in teaching quality and student learning outcomes.</p>
+        </section>
+    </div>
+
+    <!-- Page 2: Solution & SDG -->
+    <div class="page" id="page2" style="display: none;">
+        <!-- Solution Section -->
+        <section class="section section-alt" style="padding-top: 3rem;">
+            <h2>Our Solution: Continuous Digital Teacher Training Platform</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Our platform bridges the professional development gap by offering:</p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🎯</div>
+                    <h3>Micro-Learning</h3>
+                    <p>Short, practical modules focused on classroom skills that fit into your schedule.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🌐</div>
+                    <h3>Blended Learning</h3>
+                    <p>Combining online courses with weekend workshops for comprehensive development.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🧠</div>
+                    <h3>AI-Powered</h3>
+                    <p>Smart course recommendations tailored to each teacher's unique needs and goals.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🏅</div>
+                    <h3>Recognition</h3>
+                    <p>Certificates and badges to motivate progress and showcase achievements.</p>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 1.5rem; margin-top: 3rem; font-weight: 600; color: #667eea;">📱 Learn. Practice. Grow — Anytime, Anywhere.</p>
+        </section>
+
+        <!-- SDG Section -->
+        <section class="section sdg-section">
+            <h2>Supporting Quality Education (SDG 4)</h2>
+            <p style="max-width: 800px; margin: 0 auto;">Our initiative aligns with the United Nations' Sustainable Development Goal 4 — ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all.</p>
+            <p style="max-width: 800px; margin: 2rem auto; font-weight: 600; font-size: 1.2rem;">By empowering teachers, we strengthen the foundation of education itself.</p>
+        </section>
+    </div>
+
+    <!-- Page 3: Courses & Training Modules -->
+    <div class="page" id="page3" style="display: none;">
+        <section class="section" style="padding-top: 3rem;">
+            <h2>Courses & Training Modules</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem; color: #555;">Explore our curated selection of professional development courses designed for modern educators.</p>
+            
+            <!-- TO ADD A VIDEO: paste its link into data-video="..." on the course card below.
+                 Supported: YouTube, Vimeo, Google Drive (share link) or a direct .mp4/.webm file link. -->
+            <div class="courses-grid">
+                <div class="course-card" data-video="https://youtu.be/muql7erdmZE">
+                    <div class="course-header">
+                        <h3>🎯 Essential Classroom Management Strategies</h3>
+                    </div>
+                    <p class="course-description">Practical, proven strategies to keep your classroom organised, calm and focused on learning.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/aXANPrUbbeE">
+                    <div class="course-header">
+                        <h3>💡 Classroom Management Tips</h3>
+                    </div>
+                    <p class="course-description">Quick, easy-to-apply tips for handling everyday behaviour and keeping students engaged.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/GW4mf_S2kYc">
+                    <div class="course-header">
+                        <h3>📝 Lesson Planning</h3>
+                    </div>
+                    <p class="course-description">Learn how to plan clear, well-structured lessons that meet your learning goals.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/1Ylo8ha3tfk">
+                    <div class="course-header">
+                        <h3>📊 Assessment Methods</h3>
+                    </div>
+                    <p class="course-description">Explore different ways to measure student progress beyond traditional tests.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/HbvZ_fqbpP8">
+                    <div class="course-header">
+                        <h3>🧠 KWL Charts</h3>
+                    </div>
+                    <p class="course-description">Use KWL charts to activate prior knowledge and guide students through new topics.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/cbLoiUp9fIs">
+                    <div class="course-header">
+                        <h3>🏫 What to Do on the First Day of School</h3>
+                    </div>
+                    <p class="course-description">Start the school year right with ideas for a confident, welcoming first day.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/VdlPePv6BzM">
+                    <div class="course-header">
+                        <h3>🎉 Out-of-the-Box Icebreaker Ideas</h3>
+                    </div>
+                    <p class="course-description">Creative icebreakers that help students relax, connect and participate.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/QYuHCVSRvUs">
+                    <div class="course-header">
+                        <h3>🎓 How to Prepare for a Demo Lesson</h3>
+                    </div>
+                    <p class="course-description">Get ready to teach a standout demo lesson with confidence.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/KJLHlOIdqA4">
+                    <div class="course-header">
+                        <h3>⏰ Time Management</h3>
+                    </div>
+                    <p class="course-description">Manage your lessons, planning and workload more effectively.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="course-card" data-video="https://youtu.be/8QJlor-CYpc">
+                    <div class="course-header">
+                        <h3>🗂️ Task-Based Lesson Tips</h3>
+                    </div>
+                    <p class="course-description">Practical tips for designing engaging task-based lessons.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>🎥 Video lesson</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page 4: Impact & Testimonials -->
+    <div class="page" id="page4" style="display: none;">
+        <!-- Impact Section -->
+        <section class="section" style="padding-top: 3rem;">
+            <h2>Our Vision & Expected Impact</h2>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-icon">👩‍🏫</div>
+                    <h3>Skilled Teachers</h3>
+                    <p>Build a community of digitally skilled and confident educators.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">📈</div>
+                    <h3>Better Performance</h3>
+                    <p>Improve classroom engagement and student performance across schools.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">🌍</div>
+                    <h3>Equal Opportunity</h3>
+                    <p>Create equal learning opportunities across urban and rural schools.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">💡</div>
+                    <h3>Continuous Growth</h3>
+                    <p>Foster a culture of continuous learning and innovation in teaching.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section section-alt">
+            <h2>What Teachers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"We need flexible workshops that actually fit into our schedules."</p>
+                    <p style="margin-top: 1rem; font-style: normal; font-weight: 600;">— Primary School Teacher</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Online modules with certification would really motivate us to keep learning."</p>
+                    <p style="margin-top: 1rem; font-style: normal; font-weight: 600;">— High School Educator</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"We need more practical training that we can immediately apply in our classrooms."</p>
+                    <p style="margin-top: 1rem; font-style: normal; font-weight: 600;">— Middle School Teacher</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page 5: CTA -->
+    <div class="page" id="page5" style="display: none;">
+        <!-- CTA Section -->
+        <section class="cta" style="min-height: calc(100vh - 80px); display: flex; flex-direction: column; justify-content: center;">
+            <h2>Join the Movement</h2>
+            <p>Be part of the change. Let's empower every teacher with the skills and confidence to shape the future of learning.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="getStarted()">🔗 Sign Up / Get Started</button>
+                <button class="btn btn-secondary" onclick="openContact('Contact')">📩 Contact Us</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" onclick="goToPage(1);return false">About</a>
+            <a href="#" onclick="openContact('Contact');return false">Contact</a>
+            <a href="#" onclick="goToPage(2);return false">SDG 4</a>
+            <a href="#" onclick="openContact('Feedback');return false">Feedback</a>
+            <a href="#" onclick="openModal('privacyModal');return false">Privacy</a>
+        </div>
+        <p style="margin-top: 1rem; opacity: 0.8;">&copy; 2024 ReSkilled. Empowering educators for a better tomorrow.</p>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal-bg" id="loginModal"><div class="modal"><button class="close" onclick="closeModals()">&times;</button>
+        <h3>Welcome back</h3>
+        <label>Email</label><input id="lEmail" type="email" autocomplete="email">
+        <label>Password</label><input id="lPass" type="password" autocomplete="current-password">
+        <div class="err" id="lErr"></div>
+        <button class="btn btn-register" onclick="doLogin()">Login</button>
+        <div class="switch">New here? <a onclick="openModal('registerModal')">Create an account</a></div>
+    </div></div>
+
+    <div class="modal-bg" id="registerModal"><div class="modal"><button class="close" onclick="closeModals()">&times;</button>
+        <h3>Create your account</h3>
+        <label>Full name</label><input id="rName" autocomplete="name">
+        <label>Email</label><input id="rEmail" type="email" autocomplete="email">
+        <label>School / Institution</label><input id="rSchool">
+        <label>Teaching level</label>
+        <select id="rLevel"><option>Primary</option><option>Middle School</option><option>High School</option><option>Other</option></select>
+        <label>Password (min 6 characters)</label><input id="rPass" type="password" autocomplete="new-password">
+        <div class="err" id="rErr"></div>
+        <button class="btn btn-register" onclick="doRegister()">Register</button>
+        <div class="switch">Already registered? <a onclick="openModal('loginModal')">Login</a></div>
+    </div></div>
+
+    <div class="modal-bg" id="contactModal"><div class="modal"><button class="close" onclick="closeModals()">&times;</button>
+        <h3 id="cTitle">Contact Us</h3>
+        <label>Type</label><select id="cType"><option>Contact</option><option>Feedback</option></select>
+        <label>Name</label><input id="cName">
+        <label>Email</label><input id="cEmail" type="email">
+        <label>Message</label><textarea id="cMsg" rows="4"></textarea>
+        <div class="err" id="cErr"></div>
+        <button class="btn btn-register" onclick="sendMsg()">Send</button>
+    </div></div>
+
+    <div class="modal-bg" id="dashModal"><div class="modal"><button class="close" onclick="closeModals()">&times;</button>
+        <h3>My Dashboard</h3><div id="dashBody"></div>
+    </div></div>
+
+    <div class="modal-bg" id="privacyModal"><div class="modal"><button class="close" onclick="closeModals()">&times;</button>
+        <h3>Privacy</h3>
+        <p>Your account details, course progress and messages are stored only in this browser (localStorage). Passwords are saved as a hash, not plain text. Clearing your browser data removes everything.</p>
+    </div></div>
+
+    <div class="modal-bg" id="videoModal"><div class="modal" style="max-width:860px"><button class="close" onclick="closeModals()">&times;</button>
+        <h3 id="vidTitle"></h3>
+        <div class="vid-box" id="vidBox"></div>
+        <div id="vidActions"></div>
+    </div></div>
+
+    <div class="modal-bg" id="quizModal"><div class="modal" style="max-width:640px"><button class="close" onclick="closeModals()">&times;</button>
+        <h3 id="quizTitle"></h3><div id="quizBody"></div>
+    </div></div>
+
+    <div class="modal-bg" id="certModal"><div class="modal" style="max-width:760px"><button class="close" onclick="closeModals()">&times;</button>
+        <h3>🏅 Your Certificate</h3>
+        <canvas id="certCanvas" width="1600" height="1130" style="width:100%;border:1px solid #ddd;border-radius:6px"></canvas>
+        <button class="btn btn-register" onclick="downloadCert()">⬇ Download Certificate (PNG)</button>
+    </div></div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+
+        /* ---------- Storage helpers ---------- */
+        const $ = id => document.getElementById(id);
+        const tok = () => { try { return localStorage.getItem('rs_token') || ''; } catch (e) { return ''; } };
+        const setTok = t => { try { t ? localStorage.setItem('rs_token', t) : localStorage.removeItem('rs_token'); } catch (e) {} };
+        async function api(path, body) {
+            const r = await fetch('/api' + path, {
+                method: body ? 'POST' : 'GET',
+                headers: Object.assign({ 'Content-Type': 'application/json' }, tok() ? { Authorization: 'Bearer ' + tok() } : {}),
+                body: body ? JSON.stringify(body) : undefined
+            });
+            let d = {}; try { d = await r.json(); } catch (e) {}
+            if (!r.ok) throw new Error(d.error || 'Request failed. Is the server running?');
+            return d;
+        }
+        let ME = null, PROG = {};
+        const esc = t => String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        function toast(msg) {
+            const t = $('toast'); t.textContent = msg; t.classList.add('show');
+            clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2800);
+        }
+        const user = () => ME;
+
+        /* ---------- Modals ---------- */
+        function closeModals() { document.querySelectorAll('.modal-bg').forEach(m => m.classList.remove('open')); if (typeof stopVideo === 'function') stopVideo(); const vb = $('vidBox'); if (vb) vb.innerHTML = ''; }
+        function openModal(id) {
+            closeModals();
+            if (id === 'dashModal') renderDash();
+            ['lErr','rErr','cErr'].forEach(e => $(e).textContent = '');
+            $(id).classList.add('open');
+        }
+        document.querySelectorAll('.modal-bg').forEach(m => m.addEventListener('click', e => { if (e.target === m) closeModals(); }));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
+
+        /* ---------- Auth ---------- */
+        async function loadSession() {
+            try {
+                ME = (await api('/me')).user; PROG = {};
+                (await api('/enrollments')).forEach(e => PROG[e.course] = { done: !!e.done, date: e.date, cert: e.cert_id, watched: e.watched || 0, duration: e.duration || 0, score: e.best_score });
+            } catch (e) { ME = null; PROG = {}; setTok(''); }
+        }
+        async function startSession(t) { setTok(t); await loadSession(); renderAuth(); refreshCourses(); }
+        async function doRegister() {
+            const v = { name: $('rName').value.trim(), email: $('rEmail').value.trim().toLowerCase(),
+                        school: $('rSchool').value.trim(), level: $('rLevel').value, password: $('rPass').value };
+            if (!v.name || !v.email || !v.school) return $('rErr').textContent = 'Please fill in all fields.';
+            if (!/^\S+@\S+\.\S+$/.test(v.email)) return $('rErr').textContent = 'Enter a valid email.';
+            if (v.password.length < 6) return $('rErr').textContent = 'Password must be at least 6 characters.';
+            try {
+                await startSession((await api('/register', v)).token);
+                ['rName','rEmail','rSchool','rPass'].forEach(i => $(i).value = '');
+                closeModals(); toast('Welcome to ReSkilled, ' + v.name + '! 🎉');
+            } catch (e) { $('rErr').textContent = e.message; }
+        }
+        async function doLogin() {
+            try {
+                await startSession((await api('/login', { email: $('lEmail').value.trim(), password: $('lPass').value })).token);
+                $('lEmail').value = ''; $('lPass').value = '';
+                closeModals(); toast('Welcome back, ' + ME.name + '!');
+            } catch (e) { $('lErr').textContent = e.message; }
+        }
+        function logout() { setTok(''); ME = null; PROG = {}; closeModals(); renderAuth(); refreshCourses(); toast('Logged out.'); }
+        function renderAuth() {
+            const u = user();
+            applyView(!!u);
+            $('authArea').className = u ? 'auth-buttons user-area' : 'auth-buttons';
+            $('authArea').innerHTML = u
+                ? `<span>👋 ${esc(u.name)}</span><button class="btn btn-login" onclick="openModal('dashModal')">Dashboard</button><button class="btn btn-register" onclick="logout()">Logout</button>`
+                : `<button class="btn btn-login" onclick="openModal('loginModal')">Login</button><button class="btn btn-register" onclick="openModal('registerModal')">Register</button>`;
+        }
+        function getStarted() { user() ? openModal('dashModal') : openModal('registerModal'); }
+
+        /* ---------- Courses ---------- */
+        const progress = () => PROG;
+        const cardTitle = c => c.querySelector('h3').textContent.trim().replace(/^[^A-Za-z]+/, '');
+        const mins = s => (s / 60).toFixed(1);
+        const pct = r => r && r.duration ? Math.min(100, Math.round(100 * r.watched / r.duration)) : 0;
+        const progText = r => r.done ? '✅ Completed' : r.duration ? `${pct(r)}% watched · ${mins(r.watched)} of ${mins(r.duration)} min` : 'Not started yet';
+        function refreshCourses() {
+            document.querySelectorAll('.course-card').forEach(c => {
+                const t = cardTitle(c), r = user() ? PROG[t] : null, b = c.querySelector('.btn-course');
+                b.className = 'btn-course' + (r && r.done ? ' done' : r ? ' going' : '');
+                b.textContent = r && r.done ? '🏅 Completed' : r ? '▶ Continue' : 'Enroll Now';
+                b.onclick = () => PROG[t] ? openVideo(c) : enroll(t);
+                c.querySelector('.watch').textContent = r ? '▶ Click to watch the video' : '🔒 Enroll to unlock the video & assessment';
+                c.classList.toggle('locked', !r);
+                const pr = c.querySelector('.prog'), q = c.querySelector('.btn-quiz');
+                pr.style.display = q.style.display = r ? '' : 'none';
+                if (r) {
+                    pr.querySelector('i').style.width = (r.done ? 100 : pct(r)) + '%';
+                    pr.querySelector('small').textContent = progText(r);
+                    q.textContent = '📝 Assessment' + (r.score >= 0 ? ` (best ${r.score}%)` : '');
+                    q.onclick = () => startQuiz(t);
+                }
+            });
+        }
+        async function enroll(title) {
+            if (!user()) { toast('Please login or register to enroll.'); return openModal('loginModal'); }
+            if (PROG[title]) return;
+            try { await api('/enroll', { course: title }); await loadSession(); refreshCourses(); toast('Enrolled! Video and assessment unlocked 🎉'); }
+            catch (e) { toast(e.message); }
+        }
+        function renderDash() {
+            const u = user(); if (!u) return;
+            const names = Object.keys(PROG), done = names.filter(n => PROG[n].done);
+            $('dashBody').innerHTML =
+                `<p><b>${esc(u.name)}</b><br>${esc(u.email)}<br>${esc(u.school)} · ${esc(u.level)}<br><small>Member since ${esc(u.joined)}</small></p>
+                 <div class="stats"><div class="stat"><b>${names.length}</b>Enrolled</div><div class="stat"><b>${done.length}</b>Certificates</div></div>
+                 ${names.length ? names.map(n => `<div class="dash-item"><span>${PROG[n].done ? '🏅' : '📘'} ${esc(n)}</span>${PROG[n].done
+                    ? `<button class="btn btn-register" style="padding:.3rem .7rem;font-size:.85rem" data-t="${esc(n)}" onclick="showCert(this.dataset.t)">🏅 Certificate</button>`
+                    : `<small>${pct(PROG[n])}% watched</small>`}</div>`).join('')
+                   : '<p>You haven\'t enrolled in any course yet.</p>'}
+                 <button class="btn btn-next" style="width:100%;margin-top:1rem" onclick="closeModals();goToPage(3)">Browse courses</button>
+                 <button class="btn btn-login" style="width:100%;margin-top:.6rem" onclick="logout()">Logout</button>`;
+        }
+
+        /* ---------- Course videos ---------- */
+        let curVid = '';
+        function videoEmbed(url) {
+            url = (url || '').trim(); if (!url) return '';
+            const frame = src => `<iframe src="${src}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+            let m;
+            if ((m = url.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/))) return frame('https://www.youtube-nocookie.com/embed/' + m[1] + '?rel=0');
+            if ((m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/))) return frame('https://player.vimeo.com/video/' + m[1]);
+            if ((m = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/))) return frame('https://drive.google.com/file/d/' + m[1] + '/preview');
+            if (/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url)) return `<video src="${esc(url)}" controls autoplay playsinline></video>`;
+            return null;
+        }
+        let yt = null, tick = null, sess = null, ytP = null;
+        const ytId = u => { const m = (u || '').match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/); return m && m[1]; };
+        const loadYT = () => ytP || (ytP = new Promise(res => {
+            if (window.YT && YT.Player) return res();
+            const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api';
+            window.onYouTubeIframeAPIReady = res; s.onerror = res; document.head.appendChild(s);
+        }));
+        async function openVideo(card) {
+            const t = cardTitle(card), url = card.dataset.video || '', box = $('vidBox');
+            if (!user()) { toast('Login and enroll to watch.'); return openModal('loginModal'); }
+            if (!PROG[t]) return toast('🔒 Enroll in this course to unlock the video.');
+            curVid = t; openModal('videoModal'); $('vidTitle').textContent = t; renderVidActions();
+            if (!url) return box.innerHTML = '<div class="vid-msg">🎬 Video coming soon for this course.</div>';
+            const id = ytId(url), plain = () => { const e = videoEmbed(url); box.innerHTML = e || `<div class="vid-msg">This link can't be played here.<a href="${esc(url)}" target="_blank" rel="noopener" style="color:#fff">Open it in a new tab ↗</a></div>`; };
+            if (!id) return plain();
+            box.innerHTML = '<div id="ytDiv"></div>';
+            await loadYT();
+            if (!window.YT || !YT.Player) return plain();
+            if (curVid !== t || !$('ytDiv')) return;
+            sess = { sent: -1 };
+            const initDur = () => { const r = PROG[t], d = Math.floor(yt.getDuration()); if (r && d > 0 && !r.duration) { r.duration = d; updateBar(); } };
+            yt = new YT.Player('ytDiv', { videoId: id, width: '100%', height: '100%', playerVars: { rel: 0, modestbranding: 1 },
+                events: { onReady: initDur, onStateChange: e => { if (e.data === 1) { initDur(); startTick(); } else stopTick(); } } });
+        }
+        function startTick() {
+            stopTick();
+            tick = setInterval(() => {
+                const r = PROG[curVid]; if (!r || !r.duration) return;
+                r.watched = Math.min(r.duration, (r.watched || 0) + 1);
+                updateBar(); if (sess && r.watched - sess.sent >= 15) flush();
+            }, 1000);
+        }
+        function stopTick() { clearInterval(tick); tick = null; flush(); }
+        function stopVideo() { stopTick(); try { yt && yt.destroy(); } catch (e) {} yt = null; sess = null; }
+        async function flush() {
+            const t = curVid, r = PROG[t], s = sess;
+            if (!r || !r.duration || !s || s.busy || s.sent === r.watched) return;
+            s.busy = true; const w = r.watched;
+            try {
+                const d = await api('/progress', { course: t, watched: w, duration: r.duration }); s.sent = w;
+                if (d.completed && !r.done) { await loadSession(); refreshCourses(); renderVidActions(); toast('🎉 Course completed! Certificate earned.'); }
+                else refreshCourses();
+            } catch (e) {}
+            s.busy = false;
+        }
+        function updateBar() {
+            const r = PROG[curVid], f = document.querySelector('#vidActions .pbar i'), t = document.querySelector('#vidActions small');
+            if (r && f) { f.style.width = (r.done ? 100 : pct(r)) + '%'; t.textContent = progText(r); }
+        }
+        function renderVidActions() {
+            const r = PROG[curVid], a = $('vidActions'); if (!r) return;
+            a.innerHTML = `<div class="prog"><div class="pbar"><i style="width:${r.done ? 100 : pct(r)}%"></i></div><small>${progText(r)}</small></div>
+                <p class="rule">To earn your certificate: watch at least 80% of the video and score 60%+ in the assessment.</p>
+                <button class="btn btn-register" onclick="startQuiz(curVid)">📝 Take assessment${r.score >= 0 ? ' (best ' + r.score + '%)' : ''}</button>
+                ${r.done ? '<button class="btn btn-login" style="margin-left:.5rem" onclick="showCert(curVid)">🏅 View certificate</button>' : ''}`;
+        }
+
+        /* ---------- Assessment ---------- */
+        async function startQuiz(t) {
+            if (!user()) return openModal('loginModal');
+            curVid = t; openModal('quizModal'); $('quizTitle').textContent = t + ' — Assessment';
+            $('quizBody').innerHTML = '<p>Loading questions…</p>';
+            try {
+                const qs = (await api('/quiz/' + encodeURIComponent(t))).questions;
+                $('quizBody').dataset.n = qs.length;
+                $('quizBody').innerHTML = `<p class="rule">${qs.length} questions · pass mark 60%</p>` + qs.map((q, i) => `<div class="qn"><p><b>${i + 1}.</b> ${esc(q.q)}</p>${q.o.map((o, j) => `<label class="opt"><input type="radio" name="q${i}" value="${j}"> ${esc(o)}</label>`).join('')}</div>`).join('')
+                    + '<div class="err" id="qErr"></div><button class="btn btn-register" id="qSubmit" onclick="submitQuiz()">Submit answers</button>';
+            } catch (e) { $('quizBody').innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+        }
+        async function submitQuiz() {
+            const n = +$('quizBody').dataset.n, answers = [];
+            for (let i = 0; i < n; i++) {
+                const c = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!c) return $('qErr').textContent = 'Please answer all questions.';
+                answers.push(+c.value);
+            }
+            try {
+                const d = await api('/quiz/' + encodeURIComponent(curVid), { answers });
+                document.querySelectorAll('#quizBody .qn').forEach((el, i) => { el.classList.add(answers[i] === d.correct[i] ? 'right' : 'wrong'); el.querySelectorAll('.opt')[d.correct[i]].classList.add('key'); });
+                document.querySelectorAll('#quizBody input').forEach(i => i.disabled = true);
+                $('qSubmit').remove(); $('qErr').remove();
+                const was = PROG[curVid].done; await loadSession(); refreshCourses();
+                const done = PROG[curVid] && PROG[curVid].done;
+                $('quizBody').insertAdjacentHTML('afterbegin', `<div class="result ${d.passed ? 'pass' : 'fail'}"><h3>${d.score}/${n} · ${d.pct}%</h3>
+                    <p>${!d.passed ? 'You need 60% to pass. Review the video and try again.' : done ? '🎉 Passed — course completed!' : 'Passed! Now watch at least 80% of the video to earn your certificate.'}</p>
+                    <button class="btn btn-register" onclick="startQuiz(curVid)">Retake</button>${done ? '<button class="btn btn-login" onclick="showCert(curVid)">🏅 View certificate</button>' : ''}</div>`);
+                $('quizModal').querySelector('.modal').scrollTop = 0;
+                if (done && !was) toast('🎉 Course completed! Certificate earned.');
+            } catch (e) { $('qErr').textContent = e.message; }
+        }
+
+        function setupCards() {
+            document.querySelectorAll('.course-card').forEach(c => {
+                c.querySelector('.course-description').insertAdjacentHTML('afterend', '<div class="watch"></div>');
+                c.querySelector('.course-info').insertAdjacentHTML('beforebegin', '<div class="prog"><div class="pbar"><i></i></div><small></small></div>');
+                c.querySelector('.btn-course').insertAdjacentHTML('afterend', '<button class="btn-quiz">📝 Assessment</button>');
+                c.addEventListener('click', e => { if (!e.target.closest('button')) openVideo(c); });
+            });
+            const nl = $('navLinks');
+            nl.addEventListener('click', e => { const a = e.target.closest('a'); if (a) goToPage(+a.dataset.p); });
+            nl.firstElementChild.classList.add('active');
+            const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .12 });
+            document.querySelectorAll('.problem-card,.solution-card,.course-card,.impact-item,.testimonial-card').forEach((el, i) => { el.classList.add('reveal'); el.style.setProperty('--d', (i % 4) * 80 + 'ms'); io.observe(el); });
+        }
+
+        /* ---------- Contact / Feedback ---------- */
+        function openContact(type) {
+            openModal('contactModal');
+            $('cType').value = type; $('cTitle').textContent = type === 'Feedback' ? 'Send Feedback' : 'Contact Us';
+            const u = user(); if (u) { $('cName').value = u.name; $('cEmail').value = u.email; }
+        }
+        async function sendMsg() {
+            const b = { type: $('cType').value, name: $('cName').value.trim(), email: $('cEmail').value.trim(), msg: $('cMsg').value.trim() };
+            if (!b.name || !/^\S+@\S+\.\S+$/.test(b.email) || !b.msg) return $('cErr').textContent = 'Please enter your name, a valid email and a message.';
+            try { await api('/messages', b); $('cMsg').value = ''; closeModals(); toast('Thanks! Your message has been sent.'); }
+            catch (e) { $('cErr').textContent = e.message; }
+        }
+
+        /* ---------- Certificates ---------- */
+        let certName = 'certificate';
+        function showCert(title) {
+            const u = user(), rec = PROG[title]; if (!u || !rec || !rec.done) return;
+            drawCert($('certCanvas'), u.name, title, rec.date, rec.cert);
+            certName = 'ReSkilled-' + title.replace(/[^A-Za-z0-9]+/g, '-');
+            openModal('certModal');
+        }
+        function drawCert(cv, name, course, date, id) {
+            const c = cv.getContext('2d'), W = cv.width, H = cv.height, mid = W / 2;
+            c.fillStyle = '#fffdf7'; c.fillRect(0, 0, W, H);
+            const g = c.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#667eea'); g.addColorStop(1, '#764ba2');
+            c.fillStyle = g; c.fillRect(40, 40, W - 80, H - 80);
+            c.fillStyle = '#fffdf7'; c.fillRect(60, 60, W - 120, H - 120);
+            c.strokeStyle = '#d4a84b'; c.lineWidth = 4; c.strokeRect(85, 85, W - 170, H - 170);
+            c.textAlign = 'center';
+            c.fillStyle = '#3498db'; c.font = 'bold 44px "Segoe UI", sans-serif'; c.fillText('ReSkilled', mid, 190);
+            c.fillStyle = '#2c3e50'; c.font = 'bold 84px Georgia, serif'; c.fillText('Certificate of Completion', mid, 330);
+            c.fillStyle = '#777'; c.font = 'italic 34px Georgia, serif'; c.fillText('This is proudly presented to', mid, 420);
+            c.fillStyle = '#764ba2'; c.font = 'bold 96px Georgia, serif';
+            let fs = 96; while (c.measureText(name).width > W - 300 && fs > 40) { fs -= 4; c.font = 'bold ' + fs + 'px Georgia, serif'; }
+            c.fillText(name, mid, 550);
+            c.strokeStyle = '#d4a84b'; c.lineWidth = 2; c.beginPath(); c.moveTo(mid - 380, 580); c.lineTo(mid + 380, 580); c.stroke();
+            c.fillStyle = '#777'; c.font = 'italic 34px Georgia, serif'; c.fillText('for successfully completing the professional development course', mid, 650);
+            c.fillStyle = '#2c3e50'; c.font = 'bold 56px Georgia, serif';
+            fs = 56; while (c.measureText(course).width > W - 300 && fs > 28) { fs -= 2; c.font = 'bold ' + fs + 'px Georgia, serif'; }
+            c.fillText(course, mid, 740);
+            // seal
+            c.fillStyle = '#d4a84b'; c.beginPath(); c.arc(mid, 880, 70, 0, Math.PI * 2); c.fill();
+            c.strokeStyle = '#fffdf7'; c.lineWidth = 4; c.beginPath(); c.arc(mid, 880, 58, 0, Math.PI * 2); c.stroke();
+            c.fillStyle = '#fffdf7'; c.font = 'bold 64px sans-serif'; c.fillText('★', mid, 903);
+            // footer
+            c.fillStyle = '#2c3e50'; c.font = '30px Georgia, serif';
+            c.fillText(date, 380, 920); c.fillText('ReSkilled Team', W - 380, 920);
+            c.strokeStyle = '#999'; c.lineWidth = 2;
+            [[380], [W - 380]].forEach(([x]) => { c.beginPath(); c.moveTo(x - 160, 935); c.lineTo(x + 160, 935); c.stroke(); });
+            c.fillStyle = '#999'; c.font = '24px "Segoe UI", sans-serif';
+            c.fillText('Date', 380, 970); c.fillText('Issued by', W - 380, 970);
+            c.fillText('ID: ' + id + '   ·   Verify at ' + location.host + '/verify/' + id, mid, 1040);
+        }
+        function downloadCert() {
+            const a = document.createElement('a');
+            a.download = certName + '.png'; a.href = $('certCanvas').toDataURL('image/png'); a.click();
+        }
+
+        setupCards();
+        (async () => { if (tok()) await loadSession(); renderAuth(); refreshCourses(); })();
+
+        // Logged-in users get a clean site: Home, Solution and Courses only (no Impact / Join pages)
+        function applyView(loggedIn) {
+            document.querySelectorAll('.guest-only').forEach(a => a.style.display = loggedIn ? 'none' : '');
+            if (loggedIn) {
+                const cur = [...document.querySelectorAll('.page')].find(p => p.style.display !== 'none');
+                if (cur && (cur.id === 'page4' || cur.id === 'page5')) goToPage(3);
+            }
+        }
+        function goToPage(pageNumber) {
+            if (user() && pageNumber > 3) pageNumber = 3;
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show selected page
+            document.getElementById('page' + pageNumber).style.display = 'block';
+            document.querySelectorAll('#navLinks a').forEach(a => a.classList.toggle('active', +a.dataset.p === pageNumber));
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
