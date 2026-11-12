@@ -18,7 +18,7 @@
             background-color: #f8f9fa;
         }
 
-        /* ---------- Navigation ---------- */
+        /* Navigation */
         nav {
             background: #ffffff;
             padding: 1.5rem 5%;
@@ -35,18 +35,11 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: #3498db;
-            cursor: pointer;
         }
 
         .auth-buttons {
             display: flex;
             gap: 1rem;
-            align-items: center;
-        }
-
-        .user-greeting {
-            font-weight: 600;
-            color: #2c3e50;
         }
 
         .btn {
@@ -69,7 +62,6 @@
         .btn-register {
             background: #3498db;
             color: white;
-            border: 2px solid #3498db;
         }
 
         .btn-login:hover {
@@ -79,10 +71,9 @@
 
         .btn-register:hover {
             background: #2980b9;
-            border-color: #2980b9;
         }
 
-        /* ---------- Hero ---------- */
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -138,7 +129,7 @@
             background: rgba(255,255,255,0.1);
         }
 
-        /* ---------- Page navigation buttons ---------- */
+        /* Navigation Buttons */
         .btn-next, .btn-prev {
             background: #3498db;
             color: white;
@@ -160,16 +151,23 @@
             background: #7f8c8d;
         }
 
+        /* Page transitions */
         .page {
             animation: fadeIn 0.5s ease-in;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* ---------- Sections ---------- */
+        /* Content Sections */
         .section {
             padding: 5rem 5%;
             max-width: 1200px;
@@ -178,13 +176,6 @@
 
         .section-alt {
             background: white;
-            max-width: none;
-        }
-
-        .section-alt > * {
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .section h2 {
@@ -194,14 +185,34 @@
             text-align: center;
         }
 
-        .section p {
+        .section p, .section ul {
             font-size: 1.1rem;
             color: #555;
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
 
-        /* Problem */
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section ul li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .section ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Problem Section */
         .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -210,11 +221,10 @@
         }
 
         .problem-card {
-            background: white;
+            background: #f8f9fa;
             padding: 2rem;
             border-radius: 8px;
             border-left: 4px solid #e74c3c;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .problem-card h3 {
@@ -222,14 +232,10 @@
             margin-bottom: 0.8rem;
         }
 
-        .problem-card p {
-            margin-bottom: 0;
-        }
-
-        /* Solution */
+        /* Solution Section */
         .solution-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -239,7 +245,7 @@
             padding: 2rem;
             border-radius: 8px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .solution-card:hover {
@@ -247,32 +253,26 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
-        .solution-card p {
-            margin-bottom: 0;
-        }
-
         .solution-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        /* SDG */
+        /* SDG Section */
         .sdg-section {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             color: white;
             text-align: center;
-            max-width: none;
         }
 
-        .sdg-section h2,
-        .sdg-section p {
+        .sdg-section h2 {
             color: white;
         }
 
-        /* Impact */
+        /* Impact Section */
         .impact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -290,20 +290,20 @@
         /* Testimonials */
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .testimonial-card {
-            background: #f8f9fa;
+            background: white;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             font-style: italic;
         }
 
-        /* Courses */
+        /* Courses Section */
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -362,9 +362,8 @@
         .course-description {
             color: #555;
             line-height: 1.6;
-            margin-bottom: 1.5rem !important;
+            margin-bottom: 1.5rem;
             flex: 1;
-            font-size: 1rem !important;
         }
 
         .course-details {
@@ -378,8 +377,6 @@
             margin-bottom: 1rem;
             font-size: 0.95rem;
             color: #666;
-            flex-wrap: wrap;
-            gap: 0.5rem;
         }
 
         .btn-course {
@@ -399,12 +396,7 @@
             background: #2980b9;
         }
 
-        .btn-course.enrolled {
-            background: #2e7d32;
-            cursor: default;
-        }
-
-        /* CTA */
+        /* CTA Section */
         .cta {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -415,16 +407,12 @@
         .cta h2 {
             color: white;
             font-size: 2.5rem;
-            margin-bottom: 1.5rem;
         }
 
         .cta p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             opacity: 0.95;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* Footer */
@@ -453,880 +441,322 @@
             color: #3498db;
         }
 
-        /* ---------- Login / Register Modal ---------- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(44, 62, 80, 0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal {
-            background: white;
-            width: 100%;
-            max-width: 420px;
-            border-radius: 12px;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-            animation: fadeIn 0.3s ease-in;
-            max-height: 95vh;
-            overflow-y: auto;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 0.8rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: #95a5a6;
-            line-height: 1;
-        }
-
-        .modal-close:hover {
-            color: #2c3e50;
-        }
-
-        .modal-logo {
-            text-align: center;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #3498db;
-            margin-bottom: 1rem;
-        }
-
-        .modal-tabs {
-            display: flex;
-            border-bottom: 2px solid #eee;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-tab {
-            flex: 1;
-            padding: 0.8rem;
-            background: none;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #95a5a6;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -2px;
-            transition: all 0.2s ease;
-        }
-
-        .modal-tab.active {
-            color: #3498db;
-            border-bottom-color: #3498db;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-            color: #2c3e50;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1.5px solid #dfe6e9;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.2s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: #3498db;
-            color: white;
-            padding: 0.9rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            margin-top: 0.5rem;
-        }
-
-        .btn-submit:hover {
-            background: #2980b9;
-        }
-
-        .btn-submit:disabled {
-            background: #95a5a6;
-            cursor: not-allowed;
-        }
-
-        .form-message {
-            display: none;
-            padding: 0.75rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-message.error {
-            display: block;
-            background: #fdecea;
-            color: #c0392b;
-        }
-
-        .form-message.success {
-            display: block;
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #2c3e50;
-            color: white;
-            padding: 0.9rem 1.6rem;
-            border-radius: 8px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-            z-index: 2000;
-            opacity: 0;
-            transition: all 0.4s ease;
-            max-width: 90%;
-            text-align: center;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* ---------- Responsive ---------- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.1rem; }
-            .section h2 { font-size: 1.8rem; }
-            nav { padding: 1rem 3%; }
-            .logo { font-size: 1.5rem; }
-            .btn { padding: 0.6rem 1rem; font-size: 0.9rem; }
-            .user-greeting { display: none; }
-            .courses-grid { grid-template-columns: 1fr; }
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                padding: 1rem 3%;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">ReSkilled</div>
+        <div class="auth-buttons">
+            <button class="btn btn-login">Login</button>
+            <button class="btn btn-register">Register</button>
+        </div>
+    </nav>
 
-<!-- ===================== NAVIGATION ===================== -->
-<nav>
-    <div class="logo" onclick="goToPage(1)">ReSkilled</div>
+    <!-- Page 1: Hero & Problem -->
+    <div class="page" id="page1">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Empowering Teachers. Elevating Education.</h1>
+            <p>A digital platform enabling continuous, flexible, and practical professional development for educators — anytime, anywhere.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">🎓 Explore Courses</button>
+                <button class="btn btn-secondary">💡 Learn How It Works</button>
+            </div>
+        </section>
 
-    <!-- Shown when logged OUT -->
-    <div class="auth-buttons" id="authLoggedOut">
-        <button class="btn btn-login" onclick="openAuth('login')">Login</button>
-        <button class="btn btn-register" onclick="openAuth('register')">Register</button>
+        <!-- Problem Section -->
+        <section class="section">
+            <h2>The Challenge We're Solving</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Infrequent Training</h3>
+                    <p>Teacher training in India is often infrequent and outdated, with 62.5% of educators receiving training only once a year.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Time Constraints</h3>
+                    <p>Many educators struggle with busy schedules, making it difficult to attend traditional professional development programs.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Limited Recognition</h3>
+                    <p>Lack of proper recognition and certification discourages continuous learning and skill development among teachers.</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; font-weight: 600;">This leads to stagnation in teaching quality and student learning outcomes.</p>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-next" onclick="goToPage(2)">Next: Our Solution →</button>
+            </div>
+        </section>
     </div>
 
-    <!-- Shown when logged IN -->
-    <div class="auth-buttons" id="authLoggedIn" style="display: none;">
-        <span class="user-greeting" id="userGreeting"></span>
-        <button class="btn btn-login" onclick="handleLogout()">Logout</button>
+    <!-- Page 2: Solution & SDG -->
+    <div class="page" id="page2" style="display: none;">
+        <!-- Solution Section -->
+        <section class="section section-alt" style="padding-top: 3rem;">
+            <h2>Our Solution: Continuous Digital Teacher Training Platform</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Our platform bridges the professional development gap by offering:</p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🎯</div>
+                    <h3>Micro-Learning</h3>
+                    <p>Short, practical modules focused on classroom skills that fit into your schedule.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🌐</div>
+                    <h3>Blended Learning</h3>
+                    <p>Combining online courses with weekend workshops for comprehensive development.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🧠</div>
+                    <h3>AI-Powered</h3>
+                    <p>Smart course recommendations tailored to each teacher's unique needs and goals.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🏅</div>
+                    <h3>Recognition</h3>
+                    <p>Certificates and badges to motivate progress and showcase achievements.</p>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 1.5rem; margin-top: 3rem; font-weight: 600; color: #667eea;">📱 Learn. Practice. Grow — Anytime, Anywhere.</p>
+        </section>
+
+        <!-- SDG Section -->
+        <section class="section sdg-section">
+            <h2>Supporting Quality Education (SDG 4)</h2>
+            <p style="max-width: 800px; margin: 0 auto;">Our initiative aligns with the United Nations' Sustainable Development Goal 4 — ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all.</p>
+            <p style="max-width: 800px; margin: 2rem auto; font-weight: 600; font-size: 1.2rem;">By empowering teachers, we strengthen the foundation of education itself.</p>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-prev" onclick="goToPage(1)" style="margin-right: 1rem;">← Previous</button>
+                <button class="btn btn-next" onclick="goToPage(3)">Next: Explore Courses →</button>
+            </div>
+        </section>
     </div>
-</nav>
 
-<!-- ===================== PAGE 1: Hero & Problem ===================== -->
-<div class="page" id="page1">
-    <section class="hero">
-        <h1>Empowering Teachers. Elevating Education.</h1>
-        <p>A digital platform enabling continuous, flexible, and practical professional development for educators — anytime, anywhere.</p>
-        <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="goToPage(3)">🎓 Explore Courses</button>
-            <button class="btn btn-secondary" onclick="goToPage(2)">💡 Learn How It Works</button>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>The Challenge We're Solving</h2>
-        <div class="problem-grid">
-            <div class="problem-card">
-                <h3>Infrequent Training</h3>
-                <p>Teacher training in India is often infrequent and outdated, with 62.5% of educators receiving training only once a year.</p>
-            </div>
-            <div class="problem-card">
-                <h3>Time Constraints</h3>
-                <p>Many educators struggle with busy schedules, making it difficult to attend traditional professional development programs.</p>
-            </div>
-            <div class="problem-card">
-                <h3>Limited Recognition</h3>
-                <p>Lack of proper recognition and certification discourages continuous learning and skill development among teachers.</p>
-            </div>
-        </div>
-        <p style="text-align: center; margin-top: 2rem; font-weight: 600;">This leads to stagnation in teaching quality and student learning outcomes.</p>
-
-        <div style="text-align: center; margin-top: 3rem;">
-            <button class="btn btn-next" onclick="goToPage(2)">Next: Our Solution →</button>
-        </div>
-    </section>
-</div>
-
-<!-- ===================== PAGE 2: Solution & SDG ===================== -->
-<div class="page" id="page2" style="display: none;">
-    <section class="section section-alt" style="padding-top: 3rem;">
-        <h2>Our Solution: Continuous Digital Teacher Training Platform</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">Our platform bridges the professional development gap by offering:</p>
-        <div class="solution-grid">
-            <div class="solution-card">
-                <div class="solution-icon">🎯</div>
-                <h3>Micro-Learning</h3>
-                <p>Short, practical modules focused on classroom skills that fit into your schedule.</p>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon">🌐</div>
-                <h3>Blended Learning</h3>
-                <p>Combining online courses with weekend workshops for comprehensive development.</p>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon">🧠</div>
-                <h3>AI-Powered</h3>
-                <p>Smart course recommendations tailored to each teacher's unique needs and goals.</p>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon">🏅</div>
-                <h3>Recognition</h3>
-                <p>Certificates and badges to motivate progress and showcase achievements.</p>
-            </div>
-        </div>
-        <p style="text-align: center; font-size: 1.5rem; margin-top: 3rem; font-weight: 600; color: #667eea;">📱 Learn. Practice. Grow — Anytime, Anywhere.</p>
-    </section>
-
-    <section class="section sdg-section">
-        <h2>Supporting Quality Education (SDG 4)</h2>
-        <p style="max-width: 800px; margin: 0 auto 1.5rem;">Our initiative aligns with the United Nations' Sustainable Development Goal 4 — ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all.</p>
-        <p style="max-width: 800px; margin: 2rem auto; font-weight: 600; font-size: 1.2rem;">By empowering teachers, we strengthen the foundation of education itself.</p>
-
-        <div style="text-align: center; margin-top: 3rem;">
-            <button class="btn btn-prev" onclick="goToPage(1)" style="margin-right: 1rem;">← Previous</button>
-            <button class="btn btn-next" onclick="goToPage(3)">Next: Explore Courses →</button>
-        </div>
-    </section>
-</div>
-
-<!-- ===================== PAGE 3: Courses ===================== -->
-<div class="page" id="page3" style="display: none;">
-    <section class="section" style="padding-top: 3rem;">
-        <h2>Courses & Training Modules</h2>
-        <p style="text-align: center; margin-bottom: 3rem;">Explore our curated selection of professional development courses designed for modern educators.</p>
-
-        <div class="courses-grid">
-
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>📱 Digital Teaching Tools Basics</h3>
-                    <span class="level-badge beginner">Beginner</span>
-                </div>
-                <p class="course-description">Master essential digital tools to enhance your teaching effectiveness and engage students in the digital age.</p>
-                <div class="course-details">
-                    <div class="course-info">
-                        <span>⏱️ Duration: 25 mins</span>
-                        <span>✅ Certificate: Yes</span>
+    <!-- Page 3: Courses & Training Modules -->
+    <div class="page" id="page3" style="display: none;">
+        <section class="section" style="padding-top: 3rem;">
+            <h2>Courses & Training Modules</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem; color: #555;">Explore our curated selection of professional development courses designed for modern educators.</p>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>📱 Digital Teaching Tools Basics</h3>
+                        <span class="level-badge beginner">Beginner</span>
                     </div>
-                    <button class="btn-course" data-course-id="digital-teaching-tools-basics" data-course-title="Digital Teaching Tools Basics" onclick="enrollCourse(this)">Enroll Now</button>
-                </div>
-            </div>
-
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>📊 Smartboard Mastery</h3>
-                    <span class="level-badge intermediate">Intermediate</span>
-                </div>
-                <p class="course-description">Learn advanced techniques to maximize smartboard usage for interactive and dynamic classroom experiences.</p>
-                <div class="course-details">
-                    <div class="course-info">
-                        <span>⏱️ Duration: 30 mins</span>
-                        <span>✅ Certificate: Yes</span>
+                    <p class="course-description">Master essential digital tools to enhance your teaching effectiveness and engage students in the digital age.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>⏱️ Duration: 25 mins</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
                     </div>
-                    <button class="btn-course" data-course-id="smartboard-mastery" data-course-title="Smartboard Mastery" onclick="enrollCourse(this)">Enroll Now</button>
                 </div>
-            </div>
 
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>🎯 Classroom Management Skills</h3>
-                    <span class="level-badge beginner">Beginner</span>
-                </div>
-                <p class="course-description">Develop effective strategies to create a positive, productive, and well-organized learning environment.</p>
-                <div class="course-details">
-                    <div class="course-info">
-                        <span>⏱️ Duration: 20 mins</span>
-                        <span>✅ Certificate: Yes</span>
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>📊 Smartboard Mastery</h3>
+                        <span class="level-badge intermediate">Intermediate</span>
                     </div>
-                    <button class="btn-course" data-course-id="classroom-management-skills" data-course-title="Classroom Management Skills" onclick="enrollCourse(this)">Enroll Now</button>
-                </div>
-            </div>
-
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>💡 Student-Centric Teaching Methods</h3>
-                    <span class="level-badge intermediate">Intermediate</span>
-                </div>
-                <p class="course-description">Transform your teaching approach to focus on individual student needs and personalized learning experiences.</p>
-                <div class="course-details">
-                    <div class="course-info">
-                        <span>⏱️ Duration: 28 mins</span>
-                        <span>✅ Certificate: Yes</span>
+                    <p class="course-description">Learn advanced techniques to maximize smartboard usage for interactive and dynamic classroom experiences.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>⏱️ Duration: 30 mins</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
                     </div>
-                    <button class="btn-course" data-course-id="student-centric-teaching-methods" data-course-title="Student-Centric Teaching Methods" onclick="enrollCourse(this)">Enroll Now</button>
                 </div>
-            </div>
 
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>🌈 Inclusive Education & Learning Differences</h3>
-                    <span class="level-badge intermediate">Intermediate</span>
-                </div>
-                <p class="course-description">Build skills to support diverse learners and create an inclusive classroom that celebrates all abilities.</p>
-                <div class="course-details">
-                    <div class="course-info">
-                        <span>⏱️ Duration: 30 mins</span>
-                        <span>✅ Certificate: Yes</span>
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>🎯 Classroom Management Skills</h3>
+                        <span class="level-badge beginner">Beginner</span>
                     </div>
-                    <button class="btn-course" data-course-id="inclusive-education-learning-differences" data-course-title="Inclusive Education & Learning Differences" onclick="enrollCourse(this)">Enroll Now</button>
-                </div>
-            </div>
-
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>🎨 Creative Assessment Techniques</h3>
-                    <span class="level-badge beginner">Beginner</span>
-                </div>
-                <p class="course-description">Discover innovative ways to assess student learning beyond traditional tests and examinations.</p>
-                <div class="course-details">
-                    <div class="course-info">
-                        <span>⏱️ Duration: 22 mins</span>
-                        <span>✅ Certificate: Yes</span>
+                    <p class="course-description">Develop effective strategies to create a positive, productive, and well-organized learning environment.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>⏱️ Duration: 20 mins</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
                     </div>
-                    <button class="btn-course" data-course-id="creative-assessment-techniques" data-course-title="Creative Assessment Techniques" onclick="enrollCourse(this)">Enroll Now</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>💡 Student-Centric Teaching Methods</h3>
+                        <span class="level-badge intermediate">Intermediate</span>
+                    </div>
+                    <p class="course-description">Transform your teaching approach to focus on individual student needs and personalized learning experiences.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>⏱️ Duration: 28 mins</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>🌈 Inclusive Education & Learning Differences</h3>
+                        <span class="level-badge intermediate">Intermediate</span>
+                    </div>
+                    <p class="course-description">Build skills to support diverse learners and create an inclusive classroom that celebrates all abilities.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>⏱️ Duration: 30 mins</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>🎨 Creative Assessment Techniques</h3>
+                        <span class="level-badge beginner">Beginner</span>
+                    </div>
+                    <p class="course-description">Discover innovative ways to assess student learning beyond traditional tests and examinations.</p>
+                    <div class="course-details">
+                        <div class="course-info">
+                            <span>⏱️ Duration: 22 mins</span>
+                            <span>✅ Certificate: Yes</span>
+                        </div>
+                        <button class="btn-course">Enroll Now</button>
+                    </div>
                 </div>
             </div>
-
-        </div>
-
-        <div style="text-align: center; margin-top: 3rem;">
-            <button class="btn btn-prev" onclick="goToPage(2)" style="margin-right: 1rem;">← Previous</button>
-            <button class="btn btn-next" onclick="goToPage(4)">Next: Our Impact →</button>
-        </div>
-    </section>
-</div>
-
-<!-- ===================== PAGE 4: Impact & Testimonials ===================== -->
-<div class="page" id="page4" style="display: none;">
-    <section class="section" style="padding-top: 3rem;">
-        <h2>Our Vision & Expected Impact</h2>
-        <div class="impact-grid">
-            <div class="impact-item">
-                <div class="impact-icon">👩‍🏫</div>
-                <h3>Skilled Teachers</h3>
-                <p>Build a community of digitally skilled and confident educators.</p>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-prev" onclick="goToPage(2)" style="margin-right: 1rem;">← Previous</button>
+                <button class="btn btn-next" onclick="goToPage(4)">Next: Our Impact →</button>
             </div>
-            <div class="impact-item">
-                <div class="impact-icon">📈</div>
-                <h3>Better Performance</h3>
-                <p>Improve classroom engagement and student performance across schools.</p>
-            </div>
-            <div class="impact-item">
-                <div class="impact-icon">🌍</div>
-                <h3>Equal Opportunity</h3>
-                <p>Create equal learning opportunities across urban and rural schools.</p>
-            </div>
-            <div class="impact-item">
-                <div class="impact-icon">💡</div>
-                <h3>Continuous Growth</h3>
-                <p>Foster a culture of continuous learning and innovation in teaching.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section-alt">
-        <h2>What Teachers Say</h2>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <p>"We need flexible workshops that actually fit into our schedules."</p>
-                <p style="margin-top: 1rem; margin-bottom: 0; font-style: normal; font-weight: 600;">— Primary School Teacher</p>
-            </div>
-            <div class="testimonial-card">
-                <p>"Online modules with certification would really motivate us to keep learning."</p>
-                <p style="margin-top: 1rem; margin-bottom: 0; font-style: normal; font-weight: 600;">— High School Educator</p>
-            </div>
-            <div class="testimonial-card">
-                <p>"We need more practical training that we can immediately apply in our classrooms."</p>
-                <p style="margin-top: 1rem; margin-bottom: 0; font-style: normal; font-weight: 600;">— Middle School Teacher</p>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 3rem;">
-            <button class="btn btn-prev" onclick="goToPage(3)" style="margin-right: 1rem;">← Previous</button>
-            <button class="btn btn-next" onclick="goToPage(5)">Next: Join Us →</button>
-        </div>
-    </section>
-</div>
-
-<!-- ===================== PAGE 5: Call to Action ===================== -->
-<div class="page" id="page5" style="display: none;">
-    <section class="cta" style="min-height: calc(100vh - 80px); display: flex; flex-direction: column; justify-content: center;">
-        <h2>Join the Movement</h2>
-        <p>Be part of the change. Let's empower every teacher with the skills and confidence to shape the future of learning.</p>
-        <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="openAuth('register')">🔗 Sign Up / Get Started</button>
-            <button class="btn btn-secondary" onclick="contactUs()">📩 Contact Us</button>
-        </div>
-
-        <div style="margin-top: 3rem;">
-            <button class="btn btn-prev" onclick="goToPage(4)">← Previous</button>
-        </div>
-    </section>
-</div>
-
-<!-- ===================== FOOTER ===================== -->
-<footer>
-    <div class="footer-links">
-        <a href="#" onclick="goToPage(1); return false;">About</a>
-        <a href="#" onclick="contactUs(); return false;">Contact</a>
-        <a href="#" onclick="goToPage(2); return false;">SDG 4</a>
-        <a href="#" onclick="contactUs(); return false;">Feedback</a>
-        <a href="#" onclick="return false;">Privacy</a>
+        </section>
     </div>
-    <p style="margin-top: 1rem; opacity: 0.8;">&copy; 2026 ReSkilled. Empowering educators for a better tomorrow.</p>
-</footer>
 
-<!-- ===================== LOGIN / REGISTER MODAL ===================== -->
-<div class="modal-overlay" id="authModal" onclick="overlayClick(event)">
-    <div class="modal">
-        <button class="modal-close" onclick="closeAuth()" aria-label="Close">&times;</button>
-        <div class="modal-logo">ReSkilled</div>
+    <!-- Page 4: Impact & Testimonials -->
+    <div class="page" id="page4" style="display: none;">
+        <!-- Impact Section -->
+        <section class="section" style="padding-top: 3rem;">
+            <h2>Our Vision & Expected Impact</h2>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-icon">👩‍🏫</div>
+                    <h3>Skilled Teachers</h3>
+                    <p>Build a community of digitally skilled and confident educators.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">📈</div>
+                    <h3>Better Performance</h3>
+                    <p>Improve classroom engagement and student performance across schools.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">🌍</div>
+                    <h3>Equal Opportunity</h3>
+                    <p>Create equal learning opportunities across urban and rural schools.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-icon">💡</div>
+                    <h3>Continuous Growth</h3>
+                    <p>Foster a culture of continuous learning and innovation in teaching.</p>
+                </div>
+            </div>
+        </section>
 
-        <div class="modal-tabs">
-            <button class="modal-tab active" id="tabLogin" onclick="switchTab('login')">Login</button>
-            <button class="modal-tab" id="tabRegister" onclick="switchTab('register')">Register</button>
-        </div>
-
-        <div class="form-message" id="formMessage"></div>
-
-        <!-- Login panel -->
-        <div id="loginPanel">
-            <div class="form-group">
-                <label for="loginEmail">Email</label>
-                <input type="email" id="loginEmail" placeholder="you@school.com" autocomplete="email">
+        <!-- Testimonials -->
+        <section class="section section-alt">
+            <h2>What Teachers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"We need flexible workshops that actually fit into our schedules."</p>
+                    <p style="margin-top: 1rem; font-style: normal; font-weight: 600;">— Primary School Teacher</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Online modules with certification would really motivate us to keep learning."</p>
+                    <p style="margin-top: 1rem; font-style: normal; font-weight: 600;">— High School Educator</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"We need more practical training that we can immediately apply in our classrooms."</p>
+                    <p style="margin-top: 1rem; font-style: normal; font-weight: 600;">— Middle School Teacher</p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" placeholder="Your password" autocomplete="current-password">
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-prev" onclick="goToPage(3)" style="margin-right: 1rem;">← Previous</button>
+                <button class="btn btn-next" onclick="goToPage(5)">Next: Join Us →</button>
             </div>
-            <button class="btn-submit" id="loginSubmit" onclick="handleLogin()">Login</button>
-        </div>
-
-        <!-- Register panel -->
-        <div id="registerPanel" style="display: none;">
-            <div class="form-group">
-                <label for="regName">Full Name</label>
-                <input type="text" id="regName" placeholder="Your full name" autocomplete="name">
-            </div>
-            <div class="form-group">
-                <label for="regSubject">Subject You Teach</label>
-                <input type="text" id="regSubject" placeholder="e.g. Mathematics, Science">
-            </div>
-            <div class="form-group">
-                <label for="regEmail">Email</label>
-                <input type="email" id="regEmail" placeholder="you@school.com" autocomplete="email">
-            </div>
-            <div class="form-group">
-                <label for="regPassword">Password (min. 6 characters)</label>
-                <input type="password" id="regPassword" placeholder="Create a password" autocomplete="new-password">
-            </div>
-            <button class="btn-submit" id="registerSubmit" onclick="handleRegister()">Create Account</button>
-        </div>
+        </section>
     </div>
-</div>
 
-<!-- Toast notification -->
-<div class="toast" id="toast"></div>
+    <!-- Page 5: CTA -->
+    <div class="page" id="page5" style="display: none;">
+        <!-- CTA Section -->
+        <section class="cta" style="min-height: calc(100vh - 80px); display: flex; flex-direction: column; justify-content: center;">
+            <h2>Join the Movement</h2>
+            <p>Be part of the change. Let's empower every teacher with the skills and confidence to shape the future of learning.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">🔗 Sign Up / Get Started</button>
+                <button class="btn btn-secondary">📩 Contact Us</button>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <button class="btn btn-prev" onclick="goToPage(4)">← Previous</button>
+            </div>
+        </section>
+    </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">SDG 4</a>
+            <a href="#">Feedback</a>
+            <a href="#">Privacy</a>
+        </div>
+        <p style="margin-top: 1rem; opacity: 0.8;">&copy; 2024 ReSkilled. Empowering educators for a better tomorrow.</p>
+    </footer>
 
-<!-- =====================================================================
-     SCRIPT 1: Normal JavaScript (page navigation, modal, button handlers)
-     This works even before Firebase is connected.
-     ===================================================================== -->
-<script>
-    /* ---------- Page navigation ---------- */
-    function goToPage(pageNumber) {
-        document.querySelectorAll('.page').forEach(function (page) {
-            page.style.display = 'none';
-        });
-        document.getElementById('page' + pageNumber).style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    /* ---------- Toast ---------- */
-    var toastTimer;
-    function showToast(message) {
-        var toast = document.getElementById('toast');
-        toast.textContent = message;
-        toast.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () {
-            toast.classList.remove('show');
-        }, 3500);
-    }
-
-    /* ---------- Modal ---------- */
-    function openAuth(tab) {
-        document.getElementById('authModal').classList.add('open');
-        switchTab(tab || 'login');
-    }
-
-    function closeAuth() {
-        document.getElementById('authModal').classList.remove('open');
-        clearMessage();
-    }
-
-    function overlayClick(event) {
-        if (event.target.id === 'authModal') {
-            closeAuth();
-        }
-    }
-
-    function switchTab(tab) {
-        var isLogin = (tab === 'login');
-        document.getElementById('loginPanel').style.display = isLogin ? 'block' : 'none';
-        document.getElementById('registerPanel').style.display = isLogin ? 'none' : 'block';
-        document.getElementById('tabLogin').classList.toggle('active', isLogin);
-        document.getElementById('tabRegister').classList.toggle('active', !isLogin);
-        clearMessage();
-    }
-
-    function showMessage(text, type) {
-        var box = document.getElementById('formMessage');
-        box.textContent = text;
-        box.className = 'form-message ' + type;
-    }
-
-    function clearMessage() {
-        var box = document.getElementById('formMessage');
-        box.textContent = '';
-        box.className = 'form-message';
-    }
-
-    /* ---------- Make Firebase errors friendly ---------- */
-    function friendlyError(error) {
-        var code = (error && error.code) ? error.code : '';
-        var messages = {
-            'auth/email-already-in-use': 'This email is already registered. Please log in instead.',
-            'auth/invalid-email': 'Please enter a valid email address.',
-            'auth/weak-password': 'Password must be at least 6 characters.',
-            'auth/user-not-found': 'No account found with this email.',
-            'auth/wrong-password': 'Incorrect password. Please try again.',
-            'auth/invalid-credential': 'Incorrect email or password.',
-            'auth/too-many-requests': 'Too many attempts. Please try again later.',
-            'auth/network-request-failed': 'Network error. Please check your internet connection.',
-            'auth/operation-not-allowed': 'Email/Password sign-in is not enabled in your Firebase console.'
-        };
-        return messages[code] || (error && error.message ? error.message : 'Something went wrong.');
-    }
-
-    function firebaseReady() {
-        if (!window.reskilledAuth) {
-            return 'Firebase could not be loaded. Run this page from a local server (e.g. VS Code Live Server) with an internet connection.';
-        }
-        if (!window.reskilledAuth.configured) {
-            return 'Firebase is not set up yet. Paste your firebaseConfig into the code first.';
-        }
-        return null;
-    }
-
-    /* ---------- Login ---------- */
-    async function handleLogin() {
-        clearMessage();
-        var problem = firebaseReady();
-        if (problem) { showMessage(problem, 'error'); return; }
-
-        var email = document.getElementById('loginEmail').value.trim();
-        var password = document.getElementById('loginPassword').value;
-
-        if (!email || !password) {
-            showMessage('Please enter your email and password.', 'error');
-            return;
-        }
-
-        var button = document.getElementById('loginSubmit');
-        button.disabled = true;
-        button.textContent = 'Logging in...';
-
-        try {
-            await window.reskilledAuth.login(email, password);
-            closeAuth();
-            showToast('Welcome back! 👋');
-            document.getElementById('loginPassword').value = '';
-        } catch (error) {
-            showMessage(friendlyError(error), 'error');
-        } finally {
-            button.disabled = false;
-            button.textContent = 'Login';
-        }
-    }
-
-    /* ---------- Register ---------- */
-    async function handleRegister() {
-        clearMessage();
-        var problem = firebaseReady();
-        if (problem) { showMessage(problem, 'error'); return; }
-
-        var name = document.getElementById('regName').value.trim();
-        var subject = document.getElementById('regSubject').value.trim();
-        var email = document.getElementById('regEmail').value.trim();
-        var password = document.getElementById('regPassword').value;
-
-        if (!name || !email || !password) {
-            showMessage('Please fill in your name, email and password.', 'error');
-            return;
-        }
-        if (password.length < 6) {
-            showMessage('Password must be at least 6 characters.', 'error');
-            return;
-        }
-
-        var button = document.getElementById('registerSubmit');
-        button.disabled = true;
-        button.textContent = 'Creating account...';
-
-        try {
-            await window.reskilledAuth.register(name, email, password, subject);
-            closeAuth();
-            showToast('Account created! Welcome to ReSkilled 🎉');
-            document.getElementById('regPassword').value = '';
-        } catch (error) {
-            showMessage(friendlyError(error), 'error');
-        } finally {
-            button.disabled = false;
-            button.textContent = 'Create Account';
-        }
-    }
-
-    /* ---------- Logout ---------- */
-    async function handleLogout() {
-        if (window.reskilledAuth && window.reskilledAuth.configured) {
-            try {
-                await window.reskilledAuth.logout();
-                showToast('You have been logged out.');
-            } catch (error) {
-                showToast(friendlyError(error));
-            }
-        }
-    }
-
-    /* ---------- Update the navbar for logged in / logged out ---------- */
-    function updateNavForUser(user) {
-        var loggedOut = document.getElementById('authLoggedOut');
-        var loggedIn = document.getElementById('authLoggedIn');
-        var greeting = document.getElementById('userGreeting');
-
-        if (user) {
-            greeting.textContent = 'Hi, ' + (user.displayName || user.email);
-            loggedOut.style.display = 'none';
-            loggedIn.style.display = 'flex';
-        } else {
-            loggedIn.style.display = 'none';
-            loggedOut.style.display = 'flex';
-            // Reset enrolled buttons when logged out
-            document.querySelectorAll('.btn-course').forEach(function (btn) {
-                btn.textContent = 'Enroll Now';
-                btn.classList.remove('enrolled');
+    <script>
+        function goToPage(pageNumber) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.style.display = 'none';
             });
+            
+            // Show selected page
+            document.getElementById('page' + pageNumber).style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    }
-
-    /* ---------- Mark a course button as enrolled ---------- */
-    function markEnrolled(courseId) {
-        document.querySelectorAll('.btn-course').forEach(function (btn) {
-            if (btn.getAttribute('data-course-id') === courseId) {
-                btn.textContent = '✓ Enrolled';
-                btn.classList.add('enrolled');
-            }
-        });
-    }
-
-    /* ---------- Enroll in a course ---------- */
-    async function enrollCourse(button) {
-        var problem = firebaseReady();
-        if (problem) {
-            openAuth('login');
-            showMessage(problem, 'error');
-            return;
-        }
-
-        if (!window.reskilledAuth.isLoggedIn()) {
-            openAuth('login');
-            showMessage('Please log in or register to enroll in a course.', 'error');
-            return;
-        }
-
-        if (button.classList.contains('enrolled')) {
-            showToast('You are already enrolled in this course.');
-            return;
-        }
-
-        var courseId = button.getAttribute('data-course-id');
-        var courseTitle = button.getAttribute('data-course-title');
-
-        try {
-            await window.reskilledAuth.enroll(courseId, courseTitle);
-            markEnrolled(courseId);
-            showToast('Enrolled in "' + courseTitle + '" ✅');
-        } catch (error) {
-            showToast('Could not enroll: ' + friendlyError(error));
-        }
-    }
-
-    /* ---------- Contact ---------- */
-    function contactUs() {
-        // CHANGE THIS EMAIL to your own contact email
-        window.location.href = 'mailto:contact@reskilled.com?subject=ReSkilled%20Enquiry';
-    }
-
-    /* Close modal with the Escape key */
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') { closeAuth(); }
-    });
-</script>
-
-
-<!-- =====================================================================
-     SCRIPT 2: Firebase (module script)
-     >>> PASTE YOUR FIREBASE CONFIG INSIDE THE firebaseConfig BELOW <<<
-     ===================================================================== -->
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import {
-        getAuth,
-        createUserWithEmailAndPassword,
-        signInWithEmailAndPassword,
-        signOut,
-        updateProfile,
-        onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-    import {
-        getFirestore,
-        doc,
-        setDoc,
-        getDocs,
-        collection,
-        serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-    // ╔════════════════════════════════════════════════════════════╗
-    // ║  PASTE YOUR FIREBASE CONFIG HERE (replace the values)      ║
-    // ║  Firebase Console → Project Settings → Your apps → Web app ║
-    // ╚════════════════════════════════════════════════════════════╝
-    const firebaseConfig = {
-        apiKey: "AIzaSyDjl09bCVz8w97Et83mwcIeenpWsoe3EQY",
-        authDomain: "reskilled-f9835.firebaseapp.com",
-        projectId: "reskilled-f9835",
-        storageBucket: "reskilled-f9835.firebasestorage.app",
-        messagingSenderId: "442267711214",
-        appId:"1:442267711214:web:08f99b60b22feb942ae5ff"
-    };
-    // ───────────────────────── end of config ─────────────────────────
-
-    const configured = firebaseConfig.apiKey !== "AIzaSyDjl09bCVz8w97Et83mwcIeenpWsoe3EQY";
-
-    let auth = null;
-    let db = null;
-
-    if (configured) {
-        const app = initializeApp(firebaseConfig);
-        auth = getAuth(app);
-        db = getFirestore(app);
-    }
-
-    // Functions the rest of the page uses
-    window.reskilledAuth = {
-        configured: configured,
-
-        isLoggedIn: function () {
-            return !!(auth && auth.currentUser);
-        },
-
-        // Create account + save profile in Firestore
-        register: async function (name, email, password, subject) {
-            const cred = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(cred.user, { displayName: name });
-            await setDoc(doc(db, "users", cred.user.uid), {
-                name: name,
-                email: email,
-                subject: subject || "",
-                createdAt: serverTimestamp()
-            });
-            // Refresh navbar so the name shows immediately
-            window.updateNavForUser(auth.currentUser);
-        },
-
-        login: async function (email, password) {
-            await signInWithEmailAndPassword(auth, email, password);
-        },
-
-        logout: async function () {
-            await signOut(auth);
-        },
-
-        // Save a course enrollment under the user's document
-        enroll: async function (courseId, courseTitle) {
-            const user = auth.currentUser;
-            await setDoc(doc(db, "users", user.uid, "enrollments", courseId), {
-                courseId: courseId,
-                title: courseTitle,
-                enrolledAt: serverTimestamp()
-            });
-        }
-    };
-
-    // Runs whenever someone logs in or out
-    if (configured) {
-        onAuthStateChanged(auth, async function (user) {
-            window.updateNavForUser(user);
-
-            if (user) {
-                // Load this user's existing enrollments and mark the buttons
-                try {
-                    const snapshot = await getDocs(collection(db, "users", user.uid, "enrollments"));
-                    snapshot.forEach(function (d) {
-                        window.markEnrolled(d.id);
-                    });
-                } catch (error) {
-                    console.warn("Could not load enrollments:", error);
-                }
-            }
-        });
-    }
-</script>
+    </script>
 </body>
 </html>
