@@ -29,7 +29,7 @@ const db = new Database(path.join(__dirname, 'reskilled.db'));
 db.exec(`
   CREATE TABLE IF NOT EXISTS users(
     id INTEGER PRIMARY KEY, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL,
-    school TEXT, level TEXT, pass TEXT NOT NULL, joined TEXT DEFAULT CURRENT_DATE);
+    school TEXT, level TEXT, qualifications TEXT, pass TEXT NOT NULL, joined TEXT DEFAULT CURRENT_DATE);
   CREATE TABLE IF NOT EXISTS enrollments(
     user_id INTEGER NOT NULL, course TEXT NOT NULL, done INTEGER DEFAULT 0,
     date TEXT DEFAULT CURRENT_DATE, cert_id TEXT UNIQUE, PRIMARY KEY(user_id, course));
@@ -40,8 +40,10 @@ db.exec(`
 // Add progress columns to older databases (ignored if they already exist)
 for (const col of ['watched INTEGER DEFAULT 0', 'duration INTEGER DEFAULT 0', 'best_score INTEGER DEFAULT -1'])
   try { db.exec('ALTER TABLE enrollments ADD COLUMN ' + col); } catch {}
+try { db.exec('ALTER TABLE users ADD COLUMN qualifications TEXT'); } catch {}   // older databases
 
 const app = express();
+app.set('trust proxy', 1);
 app.use(express.json({ limit: '10kb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -60,16 +62,20 @@ function auth(req, res, next) {
   try { req.uid = jwt.verify((req.headers.authorization || '').slice(7), SECRET).uid; next(); }
   catch { res.status(401).json({ error: 'Please login first.' }); }
 }
-const publicUser = u => ({ name: u.name, email: u.email, school: u.school, level: u.level, joined: u.joined });
+const publicUser = u => ({ name: u.name, email: u.email, school: u.school, level: u.level, qualifications: u.qualifications, joined: u.joined });
 
 // ---- Auth ----
+const LEVELS = ['Primary', 'Middle School', 'High School', 'Lecturer', 'Assistant Professor', 'Associate Professor', 'Professor'];
 app.post('/api/register', limiter, (req, res) => {
-  const { name, email, school, level, password } = req.body || {};
-  if (!name || !school || !isEmail(email)) return res.status(400).json({ error: 'Please fill in all fields correctly.' });
+  const { name, email, school, level, qualifications, password } = req.body || {};
+  if (!name || !school || !isEmail(email) || !qualifications || !String(qualifications).trim())
+    return res.status(400).json({ error: 'Please fill in all fields correctly.' });
+  if (!LEVELS.includes(level)) return res.status(400).json({ error: 'Please choose a valid teaching level or designation.' });
   if (!password || password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters.' });
   try {
-    const r = db.prepare('INSERT INTO users(name,email,school,level,pass) VALUES(?,?,?,?,?)')
-      .run(name.trim().slice(0, 80), email.trim().toLowerCase(), school.trim().slice(0, 120), String(level).slice(0, 30), bcrypt.hashSync(password, 10));
+    const r = db.prepare('INSERT INTO users(name,email,school,level,qualifications,pass) VALUES(?,?,?,?,?,?)')
+      .run(String(name).trim().slice(0, 80), String(email).trim().toLowerCase(), String(school).trim().slice(0, 120), level,
+           String(qualifications).trim().slice(0, 300), bcrypt.hashSync(String(password), 10));
     res.json({ token: token(r.lastInsertRowid) });
   } catch { res.status(409).json({ error: 'This email is already registered. Please login.' }); }
 });
