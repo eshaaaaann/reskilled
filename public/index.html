@@ -540,6 +540,36 @@
             .courses-grid{grid-template-columns:1fr}.btn,.btn-course,.btn-quiz{min-height:44px}
             .modal{padding:1.4rem}.nav-links a{padding:.5rem .6rem;white-space:nowrap}
         }
+        /* Dashboard */
+        .modal.dash{max-width:1080px;width:96vw;max-height:92vh;padding:0}
+        .modal.dash .close{color:#fff;font-size:2rem;z-index:3;top:.5rem}
+        .d-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:2.2rem 2.4rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+        .d-avatar{width:88px;height:88px;border-radius:50%;background:rgba(255,255,255,.2);border:3px solid rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:700;flex-shrink:0}
+        .d-hero h2{font-size:1.9rem;margin:0 0 .35rem;line-height:1.2}
+        .d-badge{display:inline-block;background:rgba(255,255,255,.22);padding:.3rem .9rem;border-radius:20px;font-size:.95rem}
+        .d-grid{display:grid;grid-template-columns:320px 1fr;gap:1.5rem;padding:1.6rem 2.4rem 2.2rem;background:#f4f6fb;align-items:start}
+        .d-card{background:#fff;border-radius:12px;padding:1.3rem 1.4rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+        .d-card h4{font-size:1.1rem;margin-bottom:1rem;color:#2c3e50}
+        .d-row{display:flex;gap:.8rem;padding:.7rem 0;border-bottom:1px solid #eef0f5;font-size:.95rem;word-break:break-word}
+        .d-row:last-of-type{border-bottom:none}
+        .d-row small{display:block;color:#8a94a6;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.1rem}
+        .d-ic{font-size:1.3rem;width:1.8rem;text-align:center}
+        .d-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.2rem}
+        .d-stat{background:#fff;border-radius:12px;padding:1.1rem .6rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.06);color:#6b7585;font-size:.9rem;transition:transform .25s,box-shadow .25s}
+        .d-stat:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(102,126,234,.2)}
+        .d-stat b{display:block;font-size:1.9rem;color:#667eea;line-height:1.3}
+        .d-course{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;padding:1rem 1.1rem;margin-bottom:.8rem;border:1px solid #e8ebf3;border-radius:10px;transition:transform .25s,box-shadow .25s,border-color .25s}
+        .d-course:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.08);border-color:#c9d1f5}
+        .d-info{flex:1;min-width:220px}
+        .d-info h5{font-size:1rem;margin:0 0 .55rem;color:#2c3e50}
+        .d-info small{display:block;margin-top:.4rem;color:#6b7585;font-size:.85rem}
+        .d-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+        .d-empty{color:#6b7585;margin-bottom:.8rem}
+        .d-btn{padding:.5rem 1rem;border:2px solid #667eea;background:#fff;color:#667eea;border-radius:8px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .2s}
+        .d-btn:hover{background:#667eea;color:#fff;transform:translateY(-2px);box-shadow:0 6px 14px rgba(102,126,234,.35)}
+        .d-btn.primary{background:#667eea;color:#fff}.d-btn.primary:hover{background:#5568d3}
+        .d-btn.gold{border-color:#d4a84b;color:#a87a12}.d-btn.gold:hover{background:#d4a84b;color:#fff;box-shadow:0 6px 14px rgba(212,168,75,.4)}
+        @media (max-width:860px){.d-grid{grid-template-columns:1fr;padding:1.2rem}.d-stats{grid-template-columns:repeat(2,1fr)}.d-hero{padding:1.6rem 1.3rem}.d-avatar{width:68px;height:68px;font-size:1.7rem}.d-hero h2{font-size:1.5rem}}
         .course-card{cursor:pointer}
         .watch{color:#3498db;font-weight:600;font-size:.95rem;margin:-.6rem 0 1rem}
         .vid-box{position:relative;padding-top:56.25%;background:#000;border-radius:8px;overflow:hidden}
@@ -868,8 +898,12 @@
         <label>Full name</label><input id="rName" autocomplete="name">
         <label>Email</label><input id="rEmail" type="email" autocomplete="email">
         <label>School / Institution</label><input id="rSchool">
-        <label>Teaching level</label>
-        <select id="rLevel"><option>Primary</option><option>Middle School</option><option>High School</option><option>Other</option></select>
+        <label>Teaching level / Designation</label>
+        <select id="rLevel">
+            <optgroup label="School teacher"><option>Primary</option><option>Middle School</option><option>High School</option></optgroup>
+            <optgroup label="College / University"><option>Lecturer</option><option>Assistant Professor</option><option>Associate Professor</option><option>Professor</option></optgroup>
+        </select>
+        <label>Qualifications</label><textarea id="rQual" rows="2" maxlength="300" style="resize:vertical" placeholder="e.g. B.Ed, M.Sc. Mathematics, Ph.D."></textarea>
         <label>Password (min 6 characters)</label><input id="rPass" type="password" autocomplete="new-password">
         <div class="err" id="rErr"></div>
         <button class="btn btn-register" onclick="doRegister()">Register</button>
@@ -886,8 +920,8 @@
         <button class="btn btn-register" onclick="sendMsg()">Send</button>
     </div></div>
 
-    <div class="modal-bg" id="dashModal"><div class="modal"><button class="close" onclick="closeModals()">&times;</button>
-        <h3>My Dashboard</h3><div id="dashBody"></div>
+    <div class="modal-bg" id="dashModal"><div class="modal dash"><button class="close" onclick="closeModals()">&times;</button>
+        <div id="dashBody"></div>
     </div></div>
 
     <div class="modal-bg" id="privacyModal"><div class="modal"><button class="close" onclick="closeModals()">&times;</button>
@@ -958,13 +992,13 @@
         async function startSession(t) { setTok(t); await loadSession(); renderAuth(); refreshCourses(); }
         async function doRegister() {
             const v = { name: $('rName').value.trim(), email: $('rEmail').value.trim().toLowerCase(),
-                        school: $('rSchool').value.trim(), level: $('rLevel').value, password: $('rPass').value };
-            if (!v.name || !v.email || !v.school) return $('rErr').textContent = 'Please fill in all fields.';
+                        school: $('rSchool').value.trim(), level: $('rLevel').value, qualifications: $('rQual').value.trim(), password: $('rPass').value };
+            if (!v.name || !v.email || !v.school || !v.qualifications) return $('rErr').textContent = 'Please fill in all fields, including your qualifications.';
             if (!/^\S+@\S+\.\S+$/.test(v.email)) return $('rErr').textContent = 'Enter a valid email.';
             if (v.password.length < 6) return $('rErr').textContent = 'Password must be at least 6 characters.';
             try {
                 await startSession((await api('/register', v)).token);
-                ['rName','rEmail','rSchool','rPass'].forEach(i => $(i).value = '');
+                ['rName','rEmail','rSchool','rQual','rPass'].forEach(i => $(i).value = '');
                 closeModals(); toast('Welcome to ReSkilled, ' + v.name + '! 🎉');
             } catch (e) { $('rErr').textContent = e.message; }
         }
@@ -1018,16 +1052,46 @@
         }
         function renderDash() {
             const u = user(); if (!u) return;
-            const names = Object.keys(PROG), done = names.filter(n => PROG[n].done);
-            $('dashBody').innerHTML =
-                `<p><b>${esc(u.name)}</b><br>${esc(u.email)}<br>${esc(u.school)} · ${esc(u.level)}<br><small>Member since ${esc(u.joined)}</small></p>
-                 <div class="stats"><div class="stat"><b>${names.length}</b>Enrolled</div><div class="stat"><b>${done.length}</b>Certificates</div></div>
-                 ${names.length ? names.map(n => `<div class="dash-item"><span>${PROG[n].done ? '🏅' : '📘'} ${esc(n)}</span>${PROG[n].done
-                    ? `<button class="btn btn-register" style="padding:.3rem .7rem;font-size:.85rem" data-t="${esc(n)}" onclick="showCert(this.dataset.t)">🏅 Certificate</button>`
-                    : `<small>${pct(PROG[n])}% watched</small>`}</div>`).join('')
-                   : '<p>You haven\'t enrolled in any course yet.</p>'}
-                 <button class="btn btn-next" style="width:100%;margin-top:1rem" onclick="closeModals();goToPage(3)">Browse courses</button>
-                 <button class="btn btn-login" style="width:100%;margin-top:.6rem" onclick="logout()">Logout</button>`;
+            const names = Object.keys(PROG), done = names.filter(n => PROG[n].done).length;
+            const sc = names.map(n => PROG[n].score).filter(x => x >= 0);
+            const avg = sc.length ? Math.round(sc.reduce((a, b) => a + b, 0) / sc.length) + '%' : '—';
+            const ini = esc(u.name.trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase());
+            const row = (ic, label, val) => `<div class="d-row"><span class="d-ic">${ic}</span><div><small>${label}</small><div>${val}</div></div></div>`;
+            const courses = names.map(n => {
+                const r = PROG[n], p = r.done ? 100 : pct(r), t = esc(n);
+                return `<div class="d-course"><div class="d-info"><h5>${r.done ? '🏅' : '📘'} ${t}</h5>
+                    <div class="pbar"><i style="width:${p}%"></i></div><small>${progText(r)}${r.score >= 0 ? ' · Best score ' + r.score + '%' : ''}</small></div>
+                    <div class="d-actions"><button class="d-btn primary" data-t="${t}" onclick="watchCourse(this.dataset.t)">▶ ${r.done ? 'Rewatch' : p > 0 ? 'Continue' : 'Start'}</button>
+                    <button class="d-btn" data-t="${t}" onclick="startQuiz(this.dataset.t)">📝 Assessment</button>
+                    ${r.done ? `<button class="d-btn gold" data-t="${t}" onclick="showCert(this.dataset.t)">🏅 Certificate</button>` : ''}</div></div>`;
+            }).join('');
+            $('dashBody').innerHTML = `
+                <div class="d-hero"><div class="d-avatar">${ini}</div><div><h2>${esc(u.name)}</h2><span class="d-badge">🎓 ${esc(u.level || 'Educator')}</span></div></div>
+                <div class="d-grid">
+                    <aside class="d-card"><h4>My Profile</h4>
+                        ${row('✉️', 'Email', esc(u.email))}
+                        ${row('🏫', 'School / Institution', esc(u.school || '—'))}
+                        ${row('🎓', 'Qualifications', `<span style="white-space:pre-line">${esc(u.qualifications || 'Not provided')}</span>`)}
+                        ${row('📅', 'Member since', esc(u.joined))}
+                        <button class="d-btn" style="width:100%;margin-top:1rem" onclick="logout()">Logout</button>
+                    </aside>
+                    <section>
+                        <div class="d-stats">
+                            <div class="d-stat"><b>${names.length}</b>Enrolled</div>
+                            <div class="d-stat"><b>${names.length - done}</b>In progress</div>
+                            <div class="d-stat"><b>${done}</b>Certificates</div>
+                            <div class="d-stat"><b>${avg}</b>Avg. score</div>
+                        </div>
+                        <div class="d-card"><h4>My Courses</h4>
+                            ${courses || '<p class="d-empty">You haven\'t enrolled in any course yet.</p>'}
+                            <button class="d-btn primary" style="margin-top:.4rem" onclick="closeModals();goToPage(3)">Browse courses</button>
+                        </div>
+                    </section>
+                </div>`;
+        }
+        function watchCourse(t) {
+            const c = [...document.querySelectorAll('.course-card')].find(x => cardTitle(x) === t);
+            if (c) openVideo(c);
         }
 
         /* ---------- Course videos ---------- */
