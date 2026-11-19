@@ -1,3 +1,4 @@
 node_modules/
 reskilled.db
 .env
+serviceAccountKey.json
